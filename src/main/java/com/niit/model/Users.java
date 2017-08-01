@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
+
 public class Users 
 {
 	@Id
@@ -31,6 +33,16 @@ public class Users
 	private String username;
 	
 	private String password;
+	
+	/*private int age;*/
+	
+	private Float age;
+		
+	
+	
+	private String hobbies;
+	
+	private String intrest;
 
 	private String role;
 	@Column(name="on_line")
@@ -77,6 +89,27 @@ public class Users
 	{
 		this.password = password;
 	}
+	
+public Float getAge() {
+		return age;
+	}
+	public void setAge(Float age) {
+		this.age = age;
+	}
+	public String getHobbies() {
+		return hobbies;
+	}
+	public void setHobbies(String hobbies) {
+		this.hobbies = hobbies;
+	}
+	public String getIntrest() {
+		return intrest;
+	}
+	public void setIntrest(String intrest) {
+		this.intrest = intrest;
+	}
+
+	
 	public String getRole() 
 	{
 		return role;

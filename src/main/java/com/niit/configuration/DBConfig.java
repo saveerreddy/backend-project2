@@ -13,15 +13,22 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 
 import com.niit.dao.BlogPostDao;
 import com.niit.dao.BlogPostDaoImpl;
+import com.niit.dao.FriendDao;
+import com.niit.dao.FriendDaoImpl;
 import com.niit.dao.JobDao;
 import com.niit.dao.JobDaoImpl;
+import com.niit.dao.ProfilePictureDao;
+import com.niit.dao.ProfilePictureDaoImpl;
 import com.niit.dao.UsersDao;
 import com.niit.dao.UsersDaoImpl;
 import com.niit.model.BlogComment;
 import com.niit.model.BlogPost;
-import com.niit.model.Friend;
+import com.niit.model.Chat;
 import com.niit.model.Job;
+import com.niit.model.ProfilePicture;
 import com.niit.model.Users;
+import com.niit.model.Friend;
+
 
 
 public class DBConfig
@@ -61,6 +68,9 @@ public class DBConfig
 		 sessionBuilder.addAnnotatedClasses(BlogPost.class);
 		 sessionBuilder.addAnnotatedClasses(BlogComment.class);
 		 sessionBuilder.addAnnotatedClasses(Friend.class);
+		 sessionBuilder.addAnnotatedClasses(ProfilePicture.class);
+		 sessionBuilder.addAnnotatedClasses(Chat.class);
+		 
 		/*  sessionBuilder.addAnnotatedClasses(Blog.class);
 		  sessionBuilder.addAnnotatedClasses(Friend.class);
 		  sessionBuilder.addAnnotatedClasses(Job.class);
@@ -68,7 +78,7 @@ public class DBConfig
 		  sessionBuilder.addAnnotatedClasses(ForumComment.class);
 		 sessionBuilder.addAnnotatedClasses(BlogLikes.class);*/
 		 
-		System.out.println("Session is crated................!");
+		System.out.println("Session is created................!");
 
 		return sessionBuilder.buildSessionFactory();
 
@@ -78,7 +88,7 @@ public class DBConfig
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
-		System.out.println("Transaction is crated............!");
+		System.out.println("Transaction is created............!");
 		return transactionManager;
 	}
 	
@@ -94,13 +104,22 @@ public class DBConfig
 		
 		return new JobDaoImpl();
 	}
-
 	@Autowired
 	@Bean(name="blogPostDao")
-	public BlogPostDao getblogPostDAO(SessionFactory sessionFactory)
-	{
+	public BlogPostDao getblogPostDAO(SessionFactory sessionFactory){
 		
 		return new BlogPostDaoImpl();
 	}
-
+	@Autowired
+	@Bean(name="friendDao")
+	public FriendDao getfriendDAO(SessionFactory sessionFactory){
+		
+		return new FriendDaoImpl();
+	}
+	@Autowired
+	@Bean(name="profilePictureDao")
+	public ProfilePictureDao getprofilePictureDAO(SessionFactory sessionFactory){
+		
+		return new ProfilePictureDaoImpl();
+	}
 }

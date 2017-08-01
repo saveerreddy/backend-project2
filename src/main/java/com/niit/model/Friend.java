@@ -1,6 +1,17 @@
 package com.niit.model;
 
-public class Friend {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="friend_batch19")
+public class Friend
+{
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 
 	private int id;
 	private String fromId;
